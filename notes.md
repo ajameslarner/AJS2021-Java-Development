@@ -93,7 +93,7 @@ Examples
 
 > **public** class Noun {
 >
-    > **drive**(Speed) {
+>     **drive**(Speed) {
 >
 >       *code...*
 >
