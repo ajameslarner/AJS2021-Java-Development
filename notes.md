@@ -91,8 +91,11 @@ More info later...
 
 Examples
 
-> **public** class Noun {
+```
+public class Noun {
         drive(Speed) {
-            *code...*}
-        *code...*
->   }
+            code...
+        }
+        code...
+    }
+```
