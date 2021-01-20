@@ -33,8 +33,8 @@ A class should consist of multiple methods (functions within a class)
 Examples
 
 ```
-**class** Noun {
-  *code...*
+class Noun {
+  code...
 }
 ```
 
@@ -49,9 +49,9 @@ There are built in methods and defined methods.
 Examples
 
 ```
-**double(2)** = 4
-**add("ab","c")** = abc
-**print("hello")** = will print hello
+double(2) = 4
+add("ab","c") = abc
+print("hello") = will print hello
 ```
 
 To define a method has a similar concept to a class
@@ -61,8 +61,8 @@ To define a method has a similar concept to a class
 3rd define the methods functionality (code in between {})
 
 ```
-**drive**(Speed) {
-  *code...*
+drive(Speed) {
+  code...
 }
 ```
 
