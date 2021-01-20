@@ -26,10 +26,15 @@ Example
 
 ### class
 
-A way to structure your code and classify code blocks, classes can be defined by the programmer. The definition should be a noun, starting with a capital letter.
+A way to structure your code and classify code blocks, classes can be defined by the programmer. 
+The definition should be a noun, starting with a capital letter.
+A class should consist of multiple methods (functions within a class)
 
 Example
 
 > **class** Noun {
+>
 >   *code...*
+>
 > }
+
