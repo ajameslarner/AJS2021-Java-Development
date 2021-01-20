@@ -1,6 +1,7 @@
 # Language Notes
 
 This document contains notes related to the developed of my Java understanding.
+Java is an **Object Oriented Language**
 
 ## Basic Keywords & Concepts
 
@@ -96,8 +97,74 @@ Examples
 ```
 public class Noun {
         drive(Speed) {
-            code...
+
         }
-        code...
     }
 ```
+
+---
+
+### void
+
+For every method you have to define a return value, even when you dont want to return a value, this is void return type
+
+Here is an example of a method within a class that is not return any value simple performing the action request i.e. making the car drive.
+
+Drive is a **command** method, therefore does not return any value. Where as a method that adds two numbers together will return the result.
+
+```
+public class Car {
+    public void drive(Drive) {
+
+    }
+}
+```
+
+---
+
+### @ 
+
+This symbol is an annotate symbol
+
+Excamples
+
+```
+@This is an annotation within a code block
+```
+
+---
+
+### camelCase
+
+Already known.
+
+---
+
+### . (dot)
+
+The dot can be used to indicate performing or executing a method on a particular variable.
+
+Examples
+
+```
+car.drive()
+```
+
+---
+
+### ; (colon)
+
+This indicates the end of a Java statement.
+
+Examples
+
+```
+@Example method testing the car driving
+public void shouldDrive() {
+    car.drive(100);
+}
+```
+
+Notice the use of camelCase, dots & colons.
+
+---
