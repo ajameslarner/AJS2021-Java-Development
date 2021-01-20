@@ -1,8 +1,8 @@
 package com.ajameslarner;
 
 public class Main {
-
     public static void main(String[] args) {
-	// write your code here
+        char a = 'A';
+        System.out.println("This is an echo statement!");
     }
 }
