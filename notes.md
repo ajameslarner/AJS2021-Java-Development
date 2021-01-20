@@ -22,6 +22,14 @@ Example
 
 > **import** **static** com.web.address.program.init
 
+---
+
 ### class
 
-A way to structure your code and classify code blocks, classes can be defined by the programmer.
+A way to structure your code and classify code blocks, classes can be defined by the programmer. The definition should be a noun, starting with a capital letter.
+
+Example
+
+> **class** Noun {
+>   *code...*
+> }
