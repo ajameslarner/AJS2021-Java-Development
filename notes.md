@@ -85,6 +85,21 @@ Examples
 **arguement**
 
 More info later...
+types of variables
+
+```
+byte 	    1 byte 	    Stores whole numbers from -128 to 127
+short 	    2 bytes 	Stores whole numbers from -32,768 to 32,767
+int 	    4 bytes 	Stores whole numbers from -2,147,483,648 to 2,147,483,647
+long 	    8 bytes 	Stores whole numbers from -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807
+float 	    4 bytes 	Stores fractional numbers. Sufficient for storing 6 to 7 decimal digits
+double 	    8 bytes 	Stores fractional numbers. Sufficient for storing 15 decimal digits
+boolean     1 bit 	    Stores true or false values
+char 	    2 bytes 	Stores a single character/letter or ASCII values
+```
+
+primitives
+
 
 ---
 
@@ -110,7 +125,7 @@ For every method you have to define a return value, even when you dont want to r
 
 Here is an example of a method within a class that is not return any value simple performing the action request i.e. making the car drive.
 
-Drive is a **command** method, therefore does not return any value. Where as a method that adds two numbers together will return the result.
+Drive is a **command** method, therefore does not return any value. Whereas a method that adds two numbers together will return the result.
 
 ```
 public class Car {
@@ -122,14 +137,11 @@ public class Car {
 
 ---
 
-### @ 
+### @test
 
-This symbol is an annotate symbol
-
-Excamples
 
 ```
-@This is an annotation within a code block
+NEED WORK
 ```
 
 ---
