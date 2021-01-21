@@ -1,8 +1,5 @@
 package com.ajameslarner;
 
-import javax.sound.midi.SysexMessage;
-import java.awt.*;
-
 public class Main {
     public static void main(String[] args) {
         //Numeric variables
