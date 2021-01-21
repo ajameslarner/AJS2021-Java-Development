@@ -180,3 +180,41 @@ public void shouldDrive() {
 Notice the use of camelCase, dots & colons.
 
 ---
+
+### Arithmetic Operators
+
+These can be used to perform common arithmetic operations.
+
+Examples
+
+```
++ 	Addition            Adds together two values                    x + y 	
+- 	Subtraction 	    Subtracts one value from another            x - y 	
+* 	Multiplication      Multiplies two values                       x * y 	
+/ 	Division            Divides one value by another                x / y 	
+% 	Modulus             Returns the division remainder              x % y 	
+++ 	Increment           Increases the value of a variable by 1      ++x 	
+-- 	Decrement           Decreases the value of a variable by 1      --x
+```
+
+---
+
+### Assignment Operators
+
+Assignment operators are used to assign values to variables
+
+Examples
+
+```
+=       x = 5       x = 5 	
++=      x += 3      x = x + 3 	
+-=      x -= 3      x = x - 3 	
+*=      x *= 3      x = x * 3 	
+/=      x /= 3      x = x / 3 	
+%=      x %= 3      x = x % 3 	
+&=      x &= 3      x = x & 3 	
+|=      x |= 3      x = x | 3 	
+^=      x ^= 3      x = x ^ 3 	
+>>=     x >>= 3     x = x >> 3 	
+<<=     x <<= 3     x = x << 3
+```
