@@ -1,6 +1,6 @@
 package com.ajameslarner;
 
-public class operators {
+public class Ops {
     public static void main(String[] args) {
         //Arithmetic Operators
         int add = 5 + 10;   //stores 15
@@ -33,7 +33,7 @@ public class operators {
         x <<= 2;        //Left Shift Bit Operator
         // More details below
 
-        //Bitwise operators -  1 2 4 8 16 32 64 128
+        //Bitwise Operators -  1 2 4 8 16 32 64 128
         int z = 10;         //0000 1010
         int v = 28;         //0001 1100
 
