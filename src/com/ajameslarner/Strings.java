@@ -57,8 +57,5 @@ public class Strings {
 
         //All string methods can be found here: https://www.w3schools.com/java/java_ref_string.asp
 
-
-
-
     }
 }
