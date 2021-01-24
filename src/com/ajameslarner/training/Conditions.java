@@ -1,4 +1,4 @@
-package com.ajameslarner;
+package com.ajameslarner.training;
 
 public class Conditions {
     public static void main(String[] args) {

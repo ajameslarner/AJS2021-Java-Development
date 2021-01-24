@@ -1,4 +1,4 @@
-package com.ajameslarner;
+package com.ajameslarner.training;
 
 import javax.sound.midi.SysexMessage;
 
