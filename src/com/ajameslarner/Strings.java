@@ -33,6 +33,7 @@ public class Strings {
         String engTxt = "It's a test";
 
         //Escape characters
+        //Escape characters
         String newLine = "Hello \n This is a test";         //Make a new line
         String carReturn = "Hello \r This is a test";       //Carriage return key
         String tab = "Hello \t This is a test";             //Tab

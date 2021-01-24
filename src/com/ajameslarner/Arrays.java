@@ -27,5 +27,32 @@ public class Arrays {
         }
 
         //MULTI-DIMENSIONAL ARRAYS TOMORROW!
+
+        //A multi dimensional array is an array consisting on rows and columns (2d array) - basically a table
+
+        int[][] dimArray = {{1,2,3,3,21,3,1,233},{4,5,6,5,6,7,6,4,5,3,4}};
+
+        int firstRow = dimArray[0][0];      //Outputs 1 (1st row being the 1st brackets which is 0 (array counts)
+        int secondRow = dimArray[1][0];    //Outputs 4 (2nd row being the 2nd brackets which is 0 (array counts)
+
+        System.out.println(firstRow);
+        System.out.println(secondRow);
+
+        String[][] dimArrayMulti = {{"a","a","a"},{"b","b"},{"c","c","c","c","c"}};     //Rows can be infinite, additional brackets
+                                                                                                //Also variable type can be substituted like the example here (String)
+
+        System.out.println(dimArrayMulti[0][2] + dimArrayMulti[1][1] + dimArrayMulti[2][3]);    //Called upon like this
+
+        //How to loop through a multi 2d array
+        int multiLoopArray[][] = {{0,0,0,0,0,0},{1,1,1,1,1,1,1,},{2,2,2,2,2,2},{3,3,3,3},{4,4,4,4,4,4,}}; //5 rows
+        System.out.println(multiLoopArray.length);
+
+        System.out.println("This is the multi-loop output START");
+        for (int f = 0; f < multiLoopArray.length; f++) {           //Counts the length of the array columns (1st level/dimension)
+            for (int g = 0; g < multiLoopArray[f].length; g++) {    //Using the index from "f" counts the length of the array rows (2nd level/dimension)
+                System.out.println(multiLoopArray[f][g]);
+            }
+        }
+        System.out.println("This is the multi-loop output END");
     }
 }
