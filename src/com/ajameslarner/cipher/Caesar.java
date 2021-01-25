@@ -26,17 +26,17 @@ public class Caesar {
         }
     }
 
-    public static StringBuilder encrypt(char[] inputTextArray, char[] alphabet, int inputKey ) {
+    static StringBuilder encrypt(char[] msg, char[] charPos, int enKey ) {
 
         StringBuilder result = new StringBuilder();
 
-        for (int x = 0; x < inputTextArray.length; x++){
-            for (int y = 0; y < alphabet.length; y++) {
-                if (alphabet[y] == inputTextArray[x]) {
+        for (int x = 0; x < msg.length; x++){
+            for (int y = 0; y < charPos.length; y++) {
+                if (charPos[y] == msg[x]) {
                     int mod = y;
-                    mod += inputKey;
+                    mod += enKey;
                     mod %= 26;
-                    result.append(alphabet[mod]);
+                    result.append(charPos[mod]);
                     //System.out.println(alphabet[mod]);        //Testing
                     //System.out.println("Match! Pos: " + y);   //Testing
                     continue;

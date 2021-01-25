@@ -1,6 +1,6 @@
 package com.ajameslarner.training;
 
-public class Vars {
+public class Variables {
     public static void main(String[] args) {
         //Numeric variables
         //byte stores 1 byte of digits (127 +/-)
