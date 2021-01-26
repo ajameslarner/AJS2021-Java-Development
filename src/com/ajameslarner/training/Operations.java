@@ -1,6 +1,6 @@
 package com.ajameslarner.training;
 
-public class Ops {
+public class Operations {
     public static void main(String[] args) {
         //Arithmetic Operators
         int add = 5 + 10;   //stores 15

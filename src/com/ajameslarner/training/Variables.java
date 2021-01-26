@@ -1,6 +1,14 @@
 package com.ajameslarner.training;
 
 public class Variables {
+
+    //Attributes for the OOP file
+    int age;
+    String color;
+    char initial;
+
+
+
     public static void main(String[] args) {
         //Numeric variables
         //byte stores 1 byte of digits (127 +/-)

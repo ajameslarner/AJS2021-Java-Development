@@ -127,6 +127,5 @@ public class Methods {
         }
         return z;
     }
-
     //SO above we have 3 methods with the same name however take different inputs, this is useful to avoid writing new methods with different names which do similar stuff but slightly different
 }
