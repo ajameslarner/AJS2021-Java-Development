@@ -44,5 +44,9 @@ public class Objects {
         System.out.println(externalObject.age);
         System.out.println(externalObject.color);
         System.out.println(externalObject.initial);
+
+        //This is an external object created from a different file (class) able to ONLY use the methods inside the class it belongs too!
+        ClassMethods newExternalMethod = new ClassMethods();
+        newExternalMethod.myPublicMethod(50,"Orange");
     }
 }
