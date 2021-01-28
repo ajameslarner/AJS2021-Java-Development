@@ -8,18 +8,22 @@ public class Constructors {
     String name;
     String color;
 
-    public Constructors() {             //The constructor is called when the object is created! it initializes the objects attributes
-        age = 10;
-        price = 400;
-        name = "car";
-        color = "Black";
+    public Constructors(int x, int y, String z, String p) {
+        //the constructor can be given parameters to assign the attributes by passing them into the new object
+        age = x;
+        price = y;
+        name = z;
+        color = p;
     }
 
     public static void main(String[] args) {
 
-        Constructors consObjects = new Constructors();
-        System.out.println(consObjects.age);
+        Constructors consObjects = new Constructors(45,23,"John","Red");     //The attributes are being set by passing values into the constructor
 
-        //That's enough for today, im drunk...
+        System.out.println(consObjects.age);
+        System.out.println(consObjects.price);
+        System.out.println(consObjects.name);
+        System.out.println(consObjects.color);
+
     }
 }
