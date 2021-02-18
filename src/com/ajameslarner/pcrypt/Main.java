@@ -1,23 +1,39 @@
 package com.ajameslarner.pcrypt;
 
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws UnsupportedEncodingException {
 
-
         List<EncryptInput> newAccount = new ArrayList<>();
         String[][] newEncryption = {{"platform","email","username","password"}};
+
+        EncryptInput keyGen = new EncryptInput();
+        int[] p = keyGen.getSubKeys(18); //32bit sub-keys (p-array)
+
+        for (int i = 0; i < p.length; i++){
+            System.out.println(Integer.toHexString(p[i]));
+        }
+
+        //InputKey
+        long inputKey = keyGen.getInputKey();
+        //System.out.println(Long.toHexString(inputKey));
+        keyGen.preProcessKeys(p, inputKey);
+
+
+
+
+
+
+
 
         while (true) {
 
             Scanner scanner = new Scanner(System.in);
 
             System.out.println("Please enter your Platform: ");
+            //String scanPlatform = scanner.nextLine();
             String scanPlatform = scanner.nextLine();
 
             System.out.println("Please enter your Email: ");

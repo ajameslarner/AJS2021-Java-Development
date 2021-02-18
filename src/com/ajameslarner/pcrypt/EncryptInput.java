@@ -2,11 +2,13 @@ package com.ajameslarner.pcrypt;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
+import java.security.SecureRandom;
 
 public class EncryptInput {
 
     private static int entries = 1;
 
+    //Inputs
     public int uniqueID;
     String platform;
     String email;
@@ -34,6 +36,8 @@ public class EncryptInput {
         System.out.println("Your input has been successfully stored with a unique ID of: " + uniqueID);
         System.out.println("The " + method + " method has been successfully assigned.");
     }
+
+    public EncryptInput() {}
 
     //Insert into array table (stage 3)
     public String[][] insertUser(String[][] arr, int amount, String[] data) {
@@ -113,4 +117,49 @@ public class EncryptInput {
         }
         return result.toString();
     }
+
+    public long getInputKey() {
+        SecureRandom ranSecure = new SecureRandom();
+        return ranSecure.nextLong();
+    }
+
+    public int[] getSubKeys(int amount) {
+
+        int[] subKeys = new int[amount];
+        SecureRandom ranSecure = new SecureRandom();
+
+        for (int i=0; i < amount; i++) {
+            subKeys[i] = ranSecure.nextInt();
+        }
+        return subKeys;
+    }
+
+    public void preProcessKeys(int[] subKey, long inputKey) {
+
+        long[] roundOne = new long[0];
+        long[] roundTwo = new long[0];
+        long[] roundThree = new long[0];
+        long[] roundFour = new long[0];
+
+        for (int i=0; i< subKey.length; i++) {
+            roundOne[i] = subKey[i] ^= inputKey;
+        }
+        for (int j=0; j<subKey.length; j++) {
+            roundTwo[j] = roundOne[j] *= inputKey;
+        }
+        for (int x=0; x<subKey.length; x++) {
+            roundThree[x] = roundTwo[x] *= inputKey;
+        }
+        for (int l=0; l<subKey.length; l++) {
+            roundFour[l] = roundThree[l] *= inputKey;
+        }
+        for (long o: roundFour) {
+            o %= 64;
+            System.out.println(Long.toHexString(o));
+        }
+
+    }
+
+
+
 }
