@@ -10,16 +10,16 @@ public class Main {
         String[][] newEncryption = {{"platform","email","username","password"}};
 
         EncryptInput keyGen = new EncryptInput();
-        int[] p = keyGen.getSubKeys(18); //32bit sub-keys (p-array)
+        long[] p = keyGen.getSubKeys(18); //32bit sub-keys (p-array)
 
         for (int i = 0; i < p.length; i++){
-            System.out.println(Integer.toHexString(p[i]));
+            System.out.println(Long.toHexString(p[i]));
         }
 
         //InputKey
         long inputKey = keyGen.getInputKey();
         //System.out.println(Long.toHexString(inputKey));
-        keyGen.preProcessKeys(p, inputKey);
+        //keyGen.preProcessKeys(p, inputKey);
 
 
 

@@ -123,13 +123,13 @@ public class EncryptInput {
         return ranSecure.nextLong();
     }
 
-    public int[] getSubKeys(int amount) {
+    public long[] getSubKeys(int amount) {
 
-        int[] subKeys = new int[amount];
+        long[] subKeys = new long[amount];
         SecureRandom ranSecure = new SecureRandom();
 
         for (int i=0; i < amount; i++) {
-            subKeys[i] = ranSecure.nextInt();
+            subKeys[i] = ranSecure.nextLong();
         }
         return subKeys;
     }
@@ -154,7 +154,7 @@ public class EncryptInput {
             roundFour[l] = roundThree[l] *= inputKey;
         }
         for (long o: roundFour) {
-            o %= 64;
+            //o %= 32;
             System.out.println(Long.toHexString(o));
         }
 
