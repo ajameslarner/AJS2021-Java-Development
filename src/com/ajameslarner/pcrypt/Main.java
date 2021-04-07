@@ -10,23 +10,16 @@ public class Main {
         String[][] newEncryption = {{"platform","email","username","password"}};
 
         EncryptInput keyGen = new EncryptInput();
-        long[] p = keyGen.getSubKeys(18); //32bit sub-keys (p-array)
+        long[] p = keyGen.getSubKeys(10); //32bit sub-keys (p-array)
 
-        for (int i = 0; i < p.length; i++){
-            System.out.println(Long.toHexString(p[i]));
+        for (long l : p) {
+            System.out.println(Long.toHexString(l));
         }
 
         //InputKey
         long inputKey = keyGen.getInputKey();
         //System.out.println(Long.toHexString(inputKey));
         //keyGen.preProcessKeys(p, inputKey);
-
-
-
-
-
-
-
 
         while (true) {
 
@@ -101,14 +94,14 @@ public class Main {
                                 deInput.decodedInput = deInput.caesarDecode(deInput.decodedInput, newInput.encryptKey);
                                 System.out.println(deInput.decodedInput);
                             }
-                            System.out.println("You data has been encrypted.");
+                            System.out.println("You data has been decrypted.");
                         } else if (scanMethod.equals("bin")) {
                             for (int i = 1; i < newEncryption[entryID].length; i++){
                                 deInput.decodedInput = newEncryption[entryID][i];
                                 deInput.decodedInput = deInput.base16Decode(deInput.decodedInput, newInput.encryptKey);
                                 System.out.println(deInput.decodedInput);
                             }
-                            System.out.println("You data has been encrypted.");
+                            System.out.println("You data has been decrypted.");
                         }
                     } else if (entryDecode.equals("n")) {
                         System.out.println("You chose no.");
