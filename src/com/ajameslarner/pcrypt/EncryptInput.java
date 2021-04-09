@@ -85,6 +85,7 @@ public class EncryptInput {
 
     public String base16Encode(String msg, int enKey) throws UnsupportedEncodingException {
 
+        System.out.println("Data to Encrypt: " + msg);
         char[] msgArray = msg.toCharArray();
         StringBuilder forward = new StringBuilder();
         StringBuilder result = new StringBuilder();
@@ -93,6 +94,7 @@ public class EncryptInput {
         for (z = 32; z <= 126; z++) {
             forward.append((char) z);
         }
+
         byte[] binValues = forward.toString().getBytes("UTF-8");
         char[] ASCII = forward.toString().toCharArray();
 
@@ -100,23 +102,27 @@ public class EncryptInput {
 
         for (int x = 0; x < msgArray.length; x++) {
             //New method using the ASCII output (char)i
+            result.append(msgArray[x] + "|");
             for (int y = 0; y < 95; y++) {
                 if (ASCII[y] == msgArray[x]) {
                     int index = y;
                     index ^= enKey;
                     index %= 95;
-                    result.append(ASCII[index]);
                     String padding = Integer.toBinaryString(binValues[index]);
                     if (padding.length() < 8) {
                         padding = "0" + padding;
                     }
-                    System.out.println(padding + " ");
-                    continue;
+                    result.append(padding);
+                    break;
                 }
             }
+            result.append("|");
         }
+        //System.out.println(result);
         return result.toString();
     }
+
+    //NOTES: the bin encrypt is using the key value and substituting the characters then converting to binary!
 
     public long getInputKey() {
         SecureRandom ranSecure = new SecureRandom();
