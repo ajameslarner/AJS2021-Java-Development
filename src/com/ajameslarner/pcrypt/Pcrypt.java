@@ -70,8 +70,8 @@ public class Pcrypt {
                 newInput.encodedUsername = newInput.caesarEncode(newInput.username, newInput.encryptKey);
                 newInput.encodedPassword = newInput.caesarEncode(newInput.password, newInput.encryptKey);
                 System.out.println("You data has been encrypted.");
-                newEncryption = newInput.insertAccount(newEncryption, newInput.uniqueID, new String[]{newInput.platform,newInput.encodedEmail,newInput.encodedUsername,newInput.encodedPassword});
-            }else if (data.Method.equals("bin")) {
+                //newEncryption = newInput.insertAccount(newEncryption, newInput.uniqueID, new String[]{newInput.platform,newInput.encodedEmail,newInput.encodedUsername,newInput.encodedPassword});
+            } else if (data.Method.equals("bin")) {
                 newInput.encodedEmail = newInput.base16Encode(newInput.email);
                 newInput.encodedUsername = newInput.base16Encode(newInput.username);
                 newInput.encodedPassword = newInput.base16Encode(newInput.password);

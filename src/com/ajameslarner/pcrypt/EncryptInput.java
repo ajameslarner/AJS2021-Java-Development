@@ -37,19 +37,6 @@ public class EncryptInput {
         System.out.println("The " + method + " method has been successfully assigned.");
     }
 
-    EncryptInput(String newPlatform, String newEmail, String newUsername, String newPassword, String method) {
-
-        uniqueID = entries++;
-        platform = newPlatform;
-        email = newEmail.toLowerCase();
-        username = newUsername.toLowerCase();
-        password = newPassword;
-        encryptMethod = method;
-
-        System.out.println("Your input has been successfully stored with a unique ID of: " + uniqueID);
-        System.out.println("The " + method + " method has been successfully assigned.");
-    }
-
     public EncryptInput() {}
 
     //Insert into array table (stage 3)
@@ -115,21 +102,21 @@ public class EncryptInput {
 
         for (int x = 0; x < msgArray.length; x++) {
             //New method using the ASCII output (char)i
-            result.append(msgArray[x] + "|");
+            //result.append(msgArray[x] + "|");
             for (int y = 0; y < 95; y++) {
                 if (ASCII[y] == msgArray[x]) {
                     int index = y;
                     //index /= 16;
                     //index %= 95;
-                    String padding = Integer.toBinaryString(binValues[index]);
-                    if (padding.length() < 8) {
-                        padding = "0" + padding;
-                    }
+                    String padding = Integer.toHexString(binValues[index]);
+                    //if (padding.length() < 8) {
+                    //    padding = "0" + padding;
+                    //}
                     result.append(padding);
                     break;
                 }
             }
-            result.append("|");
+            //result.append("|");
         }
         //System.out.println(result);
         return result.toString();
