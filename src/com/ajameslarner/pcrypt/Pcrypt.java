@@ -9,6 +9,7 @@ public class Pcrypt {
     static String Username;
     static String Password;
     static String Method;
+    static long[] keys;
 
     public static void main(String[] args) throws UnsupportedEncodingException {
 
@@ -16,26 +17,11 @@ public class Pcrypt {
         Pcrypt data = new Pcrypt();
         List<EncryptInput> newAccount = new ArrayList<>();
         String[][] newEncryption = {{"platform","email","username","password"}};
+        EncryptInput keyGen = new EncryptInput();// Subkey init
         DecryptInput deInput = new DecryptInput();
 
 
-
-
-
-        EncryptInput keyGen = new EncryptInput();// Subkey init
-        //long[] p = keyGen.getSubKeys(10); //32bit sub-keys (p-array)
-
-        //for (long l : p) {
-        //    System.out.println(Long.toHexString(l));
-        //}
-
-        //InputKey
-        //long inputKey = keyGen.getInputKey();
-        //System.out.println(Long.toHexString(inputKey));
-        //keyGen.preProcessKeys(p, inputKey);
-
-
-
+        keyGen.toBinary(345);
 
         while (true) {
 
@@ -56,10 +42,26 @@ public class Pcrypt {
             System.out.println("Please Enter your Encryption Method:");
             data.Method = data.stringInputCheck("Method");
 
+
             int Key = 0;
             if (Method.equals("sub")) {
                 System.out.println("Please Enter your Encryption Key: ");
                 Key = data.intInputCheck("Key");
+            }
+
+            if (Method.equals("sha2")) {
+                System.out.println("Please Enter your Encryption Key: ");
+                int amount = data.intInputCheck("Subkey Count");
+                keys = keyGen.getSubKeys(amount); //32bit sub-keys (p-array)
+
+                for (long l : keys) {
+                    System.out.println(Long.toHexString(l));
+                }
+
+                //InputKey
+                //long inputKey = keyGen.getInputKey();
+                //System.out.println(Long.toHexString(inputKey));
+                //keyGen.preProcessKeys(p, inputKey);
             }
 
             EncryptInput newInput = new EncryptInput(Platform,Email,Username,Password,Method,Key);
@@ -71,10 +73,10 @@ public class Pcrypt {
                 newInput.encodedPassword = newInput.caesarEncode(newInput.password, newInput.encryptKey);
                 System.out.println("You data has been encrypted.");
                 //newEncryption = newInput.insertAccount(newEncryption, newInput.uniqueID, new String[]{newInput.platform,newInput.encodedEmail,newInput.encodedUsername,newInput.encodedPassword});
-            } else if (data.Method.equals("bin")) {
-                newInput.encodedEmail = newInput.base16Encode(newInput.email);
-                newInput.encodedUsername = newInput.base16Encode(newInput.username);
-                newInput.encodedPassword = newInput.base16Encode(newInput.password);
+            } else if (data.Method.equals("sha2")) {
+                newInput.encodedEmail = newInput.base16Encode(newInput.email, keys);
+                newInput.encodedUsername = newInput.base16Encode(newInput.username, keys);
+                newInput.encodedPassword = newInput.base16Encode(newInput.password, keys);
                 System.out.println("You data has been encrypted.");
             }
 

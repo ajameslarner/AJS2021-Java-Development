@@ -83,7 +83,7 @@ public class EncryptInput {
         return result.toString();
     }
 
-    public String base16Encode(String msg) throws UnsupportedEncodingException {
+    public String base16Encode(String msg, long[] subkeys) throws UnsupportedEncodingException {
 
         System.out.println("Data to Encrypt: " + msg);
         char[] msgArray = msg.toCharArray();
@@ -98,7 +98,7 @@ public class EncryptInput {
         byte[] binValues = forward.toString().getBytes("UTF-8");
         char[] ASCII = forward.toString().toCharArray();
 
-        //char[] base16 = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
+        //char[] base16 = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'}; OLD
 
         for (int x = 0; x < msgArray.length; x++) {
             //New method using the ASCII output (char)i
@@ -108,16 +108,22 @@ public class EncryptInput {
                     int index = y;
                     //index /= 16;
                     //index %= 95;
-                    String padding = Integer.toHexString(binValues[index]);
+                    String hexOut = Integer.toBinaryString(binValues[index]);
                     //if (padding.length() < 8) {
                     //    padding = "0" + padding;
                     //}
-                    result.append(padding);
+                    result.append(hexOut);
                     break;
                 }
             }
             //result.append("|");
         }
+
+        //for (long rounds : subkeys) {
+        //    hexOut ^= rounds;
+        //}
+
+
         //System.out.println(result);
         return result.toString();
     }
@@ -138,6 +144,27 @@ public class EncryptInput {
             subKeys[i] = ranSecure.nextLong();
         }
         return subKeys;
+    }
+
+    static void convertBinary(int decimal) {
+
+        int[] binaryArray = new int[8];
+
+
+
+    }
+
+    public static void toBinary(int decimal){
+        int binary[] = new int[40];
+        int index = 0;
+        while(decimal > 0){
+            binary[index++] = decimal%2;
+            decimal = decimal/2;
+        }
+        for(int i = index-1;i >= 0;i--){
+            System.out.print(binary[i]);
+        }
+        System.out.println();//new line
     }
 
     public void preProcessKeys(int[] subKey, long inputKey) {
