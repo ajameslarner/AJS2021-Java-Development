@@ -54,7 +54,7 @@ public class EncryptInput {
     }
 
     //Encrypt Method (stage 2)
-    public String caesarEncode(String msg, int enKey) throws UnsupportedEncodingException {
+    public String CaesarEncrypt(String msg, int enKey) throws UnsupportedEncodingException {
 
         char[] msgArray = msg.toCharArray();
         StringBuilder forward = new StringBuilder();
@@ -83,7 +83,7 @@ public class EncryptInput {
         return result.toString();
     }
 
-    public String base16Encode(String msg, long[] subkeys) throws UnsupportedEncodingException {
+    public String Sha2Encrypt(String msg, long[] subkeys) throws UnsupportedEncodingException {
 
         System.out.println("Data to Encrypt: " + msg);
         char[] msgArray = msg.toCharArray();
@@ -108,11 +108,11 @@ public class EncryptInput {
                     int index = y;
                     //index /= 16;
                     //index %= 95;
-                    String hexOut = Integer.toBinaryString(binValues[index]);
-                    //if (padding.length() < 8) {
-                    //    padding = "0" + padding;
-                    //}
-                    result.append(hexOut);
+                    String binOut = Integer.toBinaryString(binValues[index]);
+                    if (binOut.length() < 8) {
+                        binOut = "0" + binOut;
+                    }
+                    result.append(binOut);
                     break;
                 }
             }
@@ -154,17 +154,19 @@ public class EncryptInput {
 
     }
 
-    public static void toBinary(int decimal){
-        int binary[] = new int[40];
+    public static void toBinary(int decimal, int amount){
+        int binary[] = new int[amount];
         int index = 0;
         while(decimal > 0){
             binary[index++] = decimal%2;
             decimal = decimal/2;
+            if (binary[index] < 8 ){
+
+            }
         }
         for(int i = index-1;i >= 0;i--){
             System.out.print(binary[i]);
         }
-        System.out.println();//new line
     }
 
     public void preProcessKeys(int[] subKey, long inputKey) {

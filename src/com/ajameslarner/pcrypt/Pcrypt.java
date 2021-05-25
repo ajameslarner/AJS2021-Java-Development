@@ -21,7 +21,7 @@ public class Pcrypt {
         DecryptInput deInput = new DecryptInput();
 
 
-        keyGen.toBinary(345);
+        //keyGen.toBinary(345, 40);
 
         while (true) {
 
@@ -36,21 +36,21 @@ public class Pcrypt {
             System.out.println("Please enter your Username:");
             data.Username = data.stringInputCheck("Username");
 
-            System.out.println("Please Enter your Password:");
+            System.out.println("Please enter your Password:");
             data.Password = data.stringInputCheck("Password");
 
-            System.out.println("Please Enter your Encryption Method:");
+            System.out.println("Please enter your Encryption Method:");
             data.Method = data.stringInputCheck("Method");
 
 
             int Key = 0;
             if (Method.equals("sub")) {
-                System.out.println("Please Enter your Encryption Key: ");
+                System.out.println("Please enter your Encryption Key: ");
                 Key = data.intInputCheck("Key");
             }
 
             if (Method.equals("sha2")) {
-                System.out.println("Please Enter your Encryption Key: ");
+                System.out.println("Please choose your required amount of keys: ");
                 int amount = data.intInputCheck("Subkey Count");
                 keys = keyGen.getSubKeys(amount); //32bit sub-keys (p-array)
 
@@ -68,15 +68,15 @@ public class Pcrypt {
             newAccount.add(newInput);
 
             if (data.Method.equals("sub")) {
-                newInput.encodedEmail = newInput.caesarEncode(newInput.email, newInput.encryptKey);
-                newInput.encodedUsername = newInput.caesarEncode(newInput.username, newInput.encryptKey);
-                newInput.encodedPassword = newInput.caesarEncode(newInput.password, newInput.encryptKey);
+                newInput.encodedEmail = newInput.CaesarEncrypt(newInput.email, newInput.encryptKey);
+                newInput.encodedUsername = newInput.CaesarEncrypt(newInput.username, newInput.encryptKey);
+                newInput.encodedPassword = newInput.CaesarEncrypt(newInput.password, newInput.encryptKey);
                 System.out.println("You data has been encrypted.");
                 //newEncryption = newInput.insertAccount(newEncryption, newInput.uniqueID, new String[]{newInput.platform,newInput.encodedEmail,newInput.encodedUsername,newInput.encodedPassword});
             } else if (data.Method.equals("sha2")) {
-                newInput.encodedEmail = newInput.base16Encode(newInput.email, keys);
-                newInput.encodedUsername = newInput.base16Encode(newInput.username, keys);
-                newInput.encodedPassword = newInput.base16Encode(newInput.password, keys);
+                newInput.encodedEmail = newInput.Sha2Encrypt(newInput.email, keys);
+                newInput.encodedUsername = newInput.Sha2Encrypt(newInput.username, keys);
+                newInput.encodedPassword = newInput.Sha2Encrypt(newInput.password, keys);
                 System.out.println("You data has been encrypted.");
             }
 
