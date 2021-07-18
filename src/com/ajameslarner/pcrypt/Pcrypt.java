@@ -28,19 +28,19 @@ public class Pcrypt {
             //Scanner scanner = new Scanner(System.in);
 
             System.out.println("Please enter your Platform:");
-            data.Platform = data.stringInputCheck("Platform");
+            data.Platform = data.stringInputCheck("Platform","[abc]");
 
             System.out.println("Please enter your Email:");
-            data.Email = data.stringInputCheck("Email");
+            data.Email = data.stringInputCheck("Email","[abc]");
 
             System.out.println("Please enter your Username:");
-            data.Username = data.stringInputCheck("Username");
+            data.Username = data.stringInputCheck("Username","[abc]");
 
             System.out.println("Please enter your Password:");
-            data.Password = data.stringInputCheck("Password");
+            data.Password = data.stringInputCheck("Password","[abc]");
 
             System.out.println("Please enter your Encryption Method:");
-            data.Method = data.stringInputCheck("Method");
+            data.Method = data.stringInputCheck("Method","[abc]");
 
 
             int Key = 0;
@@ -134,15 +134,16 @@ public class Pcrypt {
         }
     }
 
-    private String stringInputCheck(String widget) {
+    private String stringInputCheck(String widget, String RegEx) {
         Scanner scanner = new Scanner(System.in);
 
         String msg;
         do {
             System.out.print(widget+": ");
-            while (!scanner.hasNext()) {
+            while (!scanner.hasNext(RegEx)) {
                 String input = scanner.next();
                 System.out.println(input + " is not valid. Please try again.");
+                System.out.print(widget+": ");
             }
             msg = scanner.next();
         } while (msg.isEmpty());
