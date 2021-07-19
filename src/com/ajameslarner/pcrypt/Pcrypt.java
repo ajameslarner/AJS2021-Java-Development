@@ -2,14 +2,19 @@ package com.ajameslarner.pcrypt;
 
 import java.io.UnsupportedEncodingException;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Pcrypt {
+
     static String Platform;
     static String Email;
     static String Username;
     static String Password;
     static String Method;
     static long[] keys;
+
+    static String RegExAlphabet = "[^ ]";
 
     public static void main(String[] args) throws UnsupportedEncodingException {
 
@@ -20,7 +25,6 @@ public class Pcrypt {
         EncryptInput keyGen = new EncryptInput();// Subkey init
         DecryptInput deInput = new DecryptInput();
 
-
         //keyGen.toBinary(345, 40);
 
         while (true) {
@@ -28,7 +32,7 @@ public class Pcrypt {
             //Scanner scanner = new Scanner(System.in);
 
             System.out.println("Please enter your Platform:");
-            data.Platform = data.stringInputCheck("Platform","[abc]");
+            data.Platform = data.RegExCheck("Platform", RegExAlphabet);
 
             System.out.println("Please enter your Email:");
             data.Email = data.stringInputCheck("Email","[abc]");
@@ -150,6 +154,7 @@ public class Pcrypt {
 
         return msg;
     }
+
     private int intInputCheck(String widget) {
         Scanner scanner = new Scanner(System.in);
 
@@ -165,5 +170,32 @@ public class Pcrypt {
         } while (num.equals(0));
 
         return num;
+    }
+
+    private String RegExCheck(String msg, String RegEx) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        do {
+            System.out.print(msg+": ");
+            Pattern pattern = Pattern.compile(RegEx, Pattern.CASE_INSENSITIVE);
+            Matcher match = pattern.matcher(msg);
+
+            while (!scanner.hasNext()) {
+                String input = scanner.next();
+                boolean isMatched = match.find();
+                if (!isMatched){
+                    msg = "Invalid Input";
+                } else {
+                    msg = "Input stored.";
+                }
+
+                return msg;
+            }
+            msg = scanner.next();
+        } while (msg.isEmpty());
+
+
+        return msg;
     }
 }
