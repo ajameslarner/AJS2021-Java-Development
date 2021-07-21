@@ -14,7 +14,7 @@ public class Pcrypt {
     static String Method;
     static long[] keys;
 
-    static String RegExAlphabet = "[^ ]";
+    static String RegExAlphabet = "[a-z0-9]";
 
     public static void main(String[] args) throws UnsupportedEncodingException {
 
@@ -35,16 +35,16 @@ public class Pcrypt {
             data.Platform = data.RegExCheck("Platform", RegExAlphabet);
 
             System.out.println("Please enter your Email:");
-            data.Email = data.stringInputCheck("Email","[abc]");
+            data.Email = data.RegExCheck("Email","[abc]");
 
             System.out.println("Please enter your Username:");
-            data.Username = data.stringInputCheck("Username","[abc]");
+            data.Username = data.RegExCheck("Username","[abc]");
 
             System.out.println("Please enter your Password:");
-            data.Password = data.stringInputCheck("Password","[abc]");
+            data.Password = data.RegExCheck("Password","[abc]");
 
             System.out.println("Please enter your Encryption Method:");
-            data.Method = data.stringInputCheck("Method","[abc]");
+            data.Method = data.RegExCheck("Method","[abc]");
 
 
             int Key = 0;
@@ -172,30 +172,34 @@ public class Pcrypt {
         return num;
     }
 
-    private String RegExCheck(String msg, String RegEx) {
+    private String RegExCheck(String widget, String RegEx) {
 
         Scanner scanner = new Scanner(System.in);
 
+        System.out.print(widget+": ");
+        String input = scanner.next();
+
+        String status;
+        boolean isMatched;
+
         do {
-            System.out.print(msg+": ");
+
             Pattern pattern = Pattern.compile(RegEx, Pattern.CASE_INSENSITIVE);
-            Matcher match = pattern.matcher(msg);
+            Matcher match = pattern.matcher(input);
 
-            while (!scanner.hasNext()) {
-                String input = scanner.next();
-                boolean isMatched = match.find();
-                if (!isMatched){
-                    msg = "Invalid Input";
-                } else {
-                    msg = "Input stored.";
-                }
-
-                return msg;
+            isMatched = match.find();
+            if (!isMatched){
+                status = "Invalid Input.";
+                System.out.println(status);
+                System.out.print(widget+": ");
+                input = scanner.next();
+            } else {
+                status = "Input stored.";
+                System.out.println(status);
             }
-            msg = scanner.next();
-        } while (msg.isEmpty());
 
+        } while (!isMatched);
 
-        return msg;
+        return input;
     }
 }
