@@ -14,7 +14,10 @@ public class Pcrypt {
     static String Method;
     static long[] keys;
 
-    static String RegExAlphabet = "[a-z0-9]";
+    static String regExCommon = "[a-z0-9]";
+    static String regExEmail = "[^@]";
+    static String regExEncryption = "[sub][sha2]";
+    static String regExAllChars = "[.]";
 
     public static void main(String[] args) throws UnsupportedEncodingException {
 
@@ -32,19 +35,19 @@ public class Pcrypt {
             //Scanner scanner = new Scanner(System.in);
 
             System.out.println("Please enter your Platform:");
-            data.Platform = data.RegExCheck("Platform", RegExAlphabet);
+            data.Platform = data.RegExCheck("Platform", regExCommon);
 
             System.out.println("Please enter your Email:");
-            data.Email = data.RegExCheck("Email","[abc]");
+            data.Email = data.RegExCheck("Email",regExEmail);
 
             System.out.println("Please enter your Username:");
-            data.Username = data.RegExCheck("Username","[abc]");
+            data.Username = data.RegExCheck("Username",regExCommon);
 
             System.out.println("Please enter your Password:");
-            data.Password = data.RegExCheck("Password","[abc]");
+            data.Password = data.RegExCheck("Password",regExCommon);
 
             System.out.println("Please enter your Encryption Method:");
-            data.Method = data.RegExCheck("Method","[abc]");
+            data.Method = data.RegExCheck("Method",regExEncryption);
 
 
             int Key = 0;
@@ -189,7 +192,7 @@ public class Pcrypt {
 
             isMatched = match.find();
             if (!isMatched){
-                status = "Invalid Input.";
+                status = "Invalid Input. " + RegEx;
                 System.out.println(status);
                 System.out.print(widget+": ");
                 input = scanner.next();
