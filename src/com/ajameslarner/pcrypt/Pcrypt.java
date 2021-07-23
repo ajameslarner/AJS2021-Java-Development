@@ -16,7 +16,7 @@ public class Pcrypt {
 
     static String regExCommon = "[a-z0-9]";
     static String regExEmail = "[^@]";
-    static String regExEncryption = "[sub][sha2]";
+    static String regExEncryption = "sub|sha2";
     static String regExAllChars = "[.]";
 
     public static void main(String[] args) throws UnsupportedEncodingException {
@@ -41,10 +41,10 @@ public class Pcrypt {
             data.Email = data.RegExCheck("Email",regExEmail);
 
             System.out.println("Please enter your Username:");
-            data.Username = data.RegExCheck("Username",regExCommon);
+            data.Username = data.RegExCheck("Username","");
 
             System.out.println("Please enter your Password:");
-            data.Password = data.RegExCheck("Password",regExCommon);
+            data.Password = data.RegExCheck("Password","");
 
             System.out.println("Please enter your Encryption Method:");
             data.Method = data.RegExCheck("Method",regExEncryption);
