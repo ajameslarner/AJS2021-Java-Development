@@ -12,15 +12,19 @@ public class Pcrypt {
     static String Username;
     static String Password;
     static String Method;
+
+    static int Key;
+
+    //Subkeys
     static long[] keys;
 
-    static String[] regExConditions = {"","[a-z0-9]","@","sub|sha2"};
+    static String[] regExConditions = {"","[a-z0-9]","@","sub|sha2","[0-9]"};
     static String[] regExError = {"","Only characters (a-z) and digits (0-9) accepted.","Please enter a valid email address.","Please enter \"sub\" for Substitution Encryption or \"sha2\" for Binary Encryption."};
 
     public static void main(String[] args) throws UnsupportedEncodingException {
 
         //Constructors
-        List<EncryptInput> newAccount = new ArrayList<>();
+        List<EncryptInput> AccountList = new ArrayList<>();
         String[][] newEncryption = {{"platform","email","username","password"}};
         EncryptInput keyGen = new EncryptInput();// Subkey init
         DecryptInput deInput = new DecryptInput();
@@ -48,16 +52,14 @@ public class Pcrypt {
             System.out.println("Please enter your Encryption Method:");
             data.Method = data.RegExCheck("Method",regExConditions[3], regExError[3]);
 
-
-            int Key = 0;
             if (Method.equals("sub")) {
                 System.out.println("Please enter your Encryption Key: ");
-                Key = data.intInputCheck("Key");
+                data.Key = data.RegExCheck("Key",regExConditions[0], regExError[0]);
             }
 
             if (Method.equals("sha2")) {
                 System.out.println("Please choose your required amount of keys: ");
-                int amount = data.intInputCheck("Subkey Count");
+                int amount = data.intInputCheck("Sub-key Count");
                 keys = keyGen.getSubKeys(amount); //32bit sub-keys (p-array)
 
                 for (long l : keys) {
@@ -71,7 +73,7 @@ public class Pcrypt {
             }
 
             EncryptInput newInput = new EncryptInput(Platform,Email,Username,Password,Method,Key);
-            newAccount.add(newInput);
+            AccountList.add(newInput);
 
             if (data.Method.equals("sub")) {
                 newInput.encodedEmail = newInput.CaesarEncrypt(newInput.email, newInput.encryptKey);
