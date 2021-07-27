@@ -19,7 +19,7 @@ public class Pcrypt {
     static long[] keys;
 
     static String[] regExConditions = {"","[a-z0-9]","@","sub|sha2","[0-9]"};
-    static String[] regExError = {"","Only characters (a-z) and digits (0-9) accepted.","Please enter a valid email address.","Please enter \"sub\" for Substitution Encryption or \"sha2\" for Binary Encryption."};
+    static String[] regExError = {"","Only characters (a-z) and digits (0-9) accepted.","Please enter a valid email address.","Please enter \"sub\" for Substitution Encryption or \"sha2\" for Binary Encryption.","Only digits between 0-9 are accepted."};
 
     public static void main(String[] args) throws UnsupportedEncodingException {
 
@@ -38,23 +38,23 @@ public class Pcrypt {
             //Scanner scanner = new Scanner(System.in);
 
             System.out.println("Please enter your Platform:");
-            data.Platform = data.RegExCheck("Platform", regExConditions[1], regExError[1]);
+            data.Platform = data.RegExCheckString("Platform", regExConditions[1], regExError[1]);
 
             System.out.println("Please enter your Email:");
-            data.Email = data.RegExCheck("Email",regExConditions[2],regExError[2]);
+            data.Email = data.RegExCheckString("Email",regExConditions[2],regExError[2]);
 
             System.out.println("Please enter your Username:");
-            data.Username = data.RegExCheck("Username",regExConditions[0], regExError[0]);
+            data.Username = data.RegExCheckString("Username",regExConditions[0], regExError[0]);
 
             System.out.println("Please enter your Password:");
-            data.Password = data.RegExCheck("Password",regExConditions[0], regExError[0]);
+            data.Password = data.RegExCheckString("Password",regExConditions[0], regExError[0]);
 
             System.out.println("Please enter your Encryption Method:");
-            data.Method = data.RegExCheck("Method",regExConditions[3], regExError[3]);
+            data.Method = data.RegExCheckString("Method",regExConditions[3], regExError[3]);
 
             if (Method.equals("sub")) {
                 System.out.println("Please enter your Encryption Key: ");
-                data.Key = data.RegExCheck("Key",regExConditions[0], regExError[0]);
+                data.Key = data.RegExCheckInt("Key",regExConditions[4], regExError[4]);
             }
 
             if (Method.equals("sha2")) {
@@ -176,7 +176,7 @@ public class Pcrypt {
         return num;
     }
 
-    private String RegExCheck(String widget, String RegEx, String errorException) {
+    private String RegExCheckString(String widget, String RegEx, String errorException) {
 
         Scanner scanner = new Scanner(System.in);
 
@@ -203,6 +203,38 @@ public class Pcrypt {
             }
 
         } while (!isMatched);
+
+        return input;
+    }
+
+    private int RegExCheckInt(String widget, String RegEx, String errorException) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print(widget+": ");
+        String input = scanner.next();
+
+        String status;
+        boolean isMatched;
+
+        do {
+
+            Pattern pattern = Pattern.compile(RegEx, Pattern.CASE_INSENSITIVE);
+            Matcher match = pattern.matcher(input);
+
+            isMatched = match.find();
+            if (!isMatched){
+                status = "Invalid Input. " + errorException;
+                System.out.println(status);
+                System.out.print(widget+": ");
+                input = scanner.next();
+            } else {
+                status = "Input stored.";
+                System.out.println(status);
+            }
+
+        } while (!isMatched);
+
 
         return input;
     }
