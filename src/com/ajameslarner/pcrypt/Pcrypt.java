@@ -162,7 +162,7 @@ public class Pcrypt {
     private int intInputCheck(String widget) {
         Scanner scanner = new Scanner(System.in);
 
-        Integer num;
+        Integer num = scanner.nextInt();
         do {
             System.out.print(widget+": ");
             while (!scanner.hasNextInt()) {
@@ -212,7 +212,7 @@ public class Pcrypt {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print(widget+": ");
-        String input = scanner.next();
+        Integer num = scanner.nextInt();
 
         String status;
         boolean isMatched;
@@ -220,14 +220,14 @@ public class Pcrypt {
         do {
 
             Pattern pattern = Pattern.compile(RegEx, Pattern.CASE_INSENSITIVE);
-            Matcher match = pattern.matcher(input);
+            Matcher match = pattern.matcher(num.toString());
 
             isMatched = match.find();
             if (!isMatched){
                 status = "Invalid Input. " + errorException;
                 System.out.println(status);
                 System.out.print(widget+": ");
-                input = scanner.next();
+                num = scanner.nextInt();
             } else {
                 status = "Input stored.";
                 System.out.println(status);
@@ -236,6 +236,6 @@ public class Pcrypt {
         } while (!isMatched);
 
 
-        return input;
+        return num;
     }
 }
