@@ -7,7 +7,7 @@ public class DecryptInput {
     String decodedInput;
 
     //Decrypt Method
-    public String caesarDecode(String msg, int deKey ) {
+    public String caesarDecrypt(String msg, int deKey ) {
 
         char[] msgArray = msg.toCharArray();
         StringBuilder reverse = new StringBuilder();

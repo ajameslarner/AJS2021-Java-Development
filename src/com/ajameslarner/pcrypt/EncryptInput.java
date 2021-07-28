@@ -102,29 +102,22 @@ public class EncryptInput {
 
         for (int x = 0; x < msgArray.length; x++) {
             //New method using the ASCII output (char)i
-            //result.append(msgArray[x] + "|");
+            result.append(msgArray[x] + "|");
             for (int y = 0; y < 95; y++) {
                 if (ASCII[y] == msgArray[x]) {
                     int index = y;
-                    //index /= 16;
-                    //index %= 95;
+
                     String binOut = Integer.toBinaryString(binValues[index]);
                     if (binOut.length() < 8) {
                         binOut = "0" + binOut;
                     }
+
                     result.append(binOut);
                     break;
                 }
             }
-            //result.append("|");
+            result.append("|");
         }
-
-        //for (long rounds : subkeys) {
-        //    hexOut ^= rounds;
-        //}
-
-
-        //System.out.println(result);
         return result.toString();
     }
 

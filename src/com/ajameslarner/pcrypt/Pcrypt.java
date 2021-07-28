@@ -35,8 +35,6 @@ public class Pcrypt {
 
             Pcrypt data = new Pcrypt();
 
-            //Scanner scanner = new Scanner(System.in);
-
             System.out.println("Please enter your Platform:");
             data.Platform = data.RegExCheckString("Platform", regExConditions[1], regExError[1]);
 
@@ -54,12 +52,12 @@ public class Pcrypt {
 
             if (Method.equals("sub")) {
                 System.out.println("Please enter your Encryption Key: ");
-                data.Key = data.RegExCheckInt("Key",regExConditions[4], regExError[4]);
+                data.Key = data.RegExCheckInt("Key");
             }
 
             if (Method.equals("sha2")) {
                 System.out.println("Please choose your required amount of keys: ");
-                int amount = data.intInputCheck("Sub-key Count");
+                int amount = data.RegExCheckInt("Sub-key Count");
                 keys = keyGen.getSubKeys(amount); //32bit sub-keys (p-array)
 
                 for (long l : keys) {
@@ -80,7 +78,6 @@ public class Pcrypt {
                 newInput.encodedUsername = newInput.CaesarEncrypt(newInput.username, newInput.encryptKey);
                 newInput.encodedPassword = newInput.CaesarEncrypt(newInput.password, newInput.encryptKey);
                 System.out.println("You data has been encrypted.");
-                //newEncryption = newInput.insertAccount(newEncryption, newInput.uniqueID, new String[]{newInput.platform,newInput.encodedEmail,newInput.encodedUsername,newInput.encodedPassword});
             } else if (data.Method.equals("sha2")) {
                 newInput.encodedEmail = newInput.Sha2Encrypt(newInput.email, keys);
                 newInput.encodedUsername = newInput.Sha2Encrypt(newInput.username, keys);
@@ -108,21 +105,21 @@ public class Pcrypt {
                     System.out.println("Please enter the Unique ID: ");
                     int entryID = entryIDScan.nextInt();
                     System.out.println(Arrays.deepToString(newEncryption[entryID]));
-                    System.out.println("Would you like to decode this? (y/n) ");
+                    System.out.println("Would you like to decrypt this? (y/n) ");
                     String entryDecode = entryDecodeScan.nextLine();
                     if (entryDecode.equals("y")) {
-                        //for (int i = 0; i < 1; i++){
-                        //    System.out.println("Decoded credentials for: " + newEncryption[entryID][i]);
-                        //}
-//
-                        //if (newInput.encryptMethod.equals("sub")) {
-                        //    for (int i = 1; i < newEncryption[entryID].length; i++){
-                        //        deInput.decodedInput = newEncryption[entryID][i];
-                        //        deInput.decodedInput = deInput.caesarDecode(deInput.decodedInput, newInput.encryptKey);
-                        //        System.out.println(deInput.decodedInput);
-                        //    }
-                        //    System.out.println("You data has been decrypted.");
-                        //} else if (newInput.encryptMethod.equals("bin")) {
+                        for (int i = 0; i < 1; i++){
+                            System.out.println("Decoded credentials for: " + newEncryption[entryID][i]);
+                        }
+
+                        if (newInput.encryptMethod.equals("sub")) {
+                            for (int i = 1; i < newEncryption[entryID].length; i++){
+                                deInput.decodedInput = newEncryption[entryID][i];
+                                deInput.decodedInput = deInput.caesarDecrypt(deInput.decodedInput, newInput.encryptKey);
+                                System.out.println(deInput.decodedInput);
+                            }
+                            System.out.println("You data has been decrypted.");
+                        }// else if (newInput.encryptMethod.equals("bin")) {
                         //    for (int i = 1; i < newEncryption[entryID].length; i++){
                         //        deInput.decodedInput = newEncryption[entryID][i];
                         //        deInput.decodedInput = deInput.base16Decode(deInput.decodedInput, newInput.encryptKey);
@@ -140,40 +137,6 @@ public class Pcrypt {
                 }
             }
         }
-    }
-
-    private String stringInputCheck(String widget, String RegEx) {
-        Scanner scanner = new Scanner(System.in);
-
-        String msg;
-        do {
-            System.out.print(widget+": ");
-            while (!scanner.hasNext(RegEx)) {
-                String input = scanner.next();
-                System.out.println(input + " is not valid. Please try again.");
-                System.out.print(widget+": ");
-            }
-            msg = scanner.next();
-        } while (msg.isEmpty());
-
-        return msg;
-    }
-
-    private int intInputCheck(String widget) {
-        Scanner scanner = new Scanner(System.in);
-
-        Integer num = scanner.nextInt();
-        do {
-            System.out.print(widget+": ");
-            while (!scanner.hasNextInt()) {
-                String input = scanner.next();
-                System.out.println(input + " is not valid. Please try again.");
-            }
-            num = scanner.nextInt();
-
-        } while (num.equals(0));
-
-        return num;
     }
 
     private String RegExCheckString(String widget, String RegEx, String errorException) {
@@ -207,34 +170,22 @@ public class Pcrypt {
         return input;
     }
 
-    private int RegExCheckInt(String widget, String RegEx, String errorException) {
+    private int RegExCheckInt(String widget) {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print(widget+": ");
-        Integer num = scanner.nextInt();
-
-        String status;
-        boolean isMatched;
+        int num;
 
         do {
-
-            Pattern pattern = Pattern.compile(RegEx, Pattern.CASE_INSENSITIVE);
-            Matcher match = pattern.matcher(num.toString());
-
-            isMatched = match.find();
-            if (!isMatched){
-                status = "Invalid Input. " + errorException;
-                System.out.println(status);
+            System.out.print(widget+": ");
+            while (!scanner.hasNextInt()){
+                String input = scanner.next();
+                System.out.println("\""+input+"\"" + " is not a valid input.");
                 System.out.print(widget+": ");
-                num = scanner.nextInt();
-            } else {
-                status = "Input stored.";
-                System.out.println(status);
             }
+            num = scanner.nextInt();
 
-        } while (!isMatched);
-
+        } while (num < 0);
 
         return num;
     }
